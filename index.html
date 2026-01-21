@@ -4,14 +4,194 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Automation Central</title>
+  <meta name="description" content="Automation Central is the Creator OS for turning ideas into systems, content into products, and workflows into automation." />
+  <style>
+    :root{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#161623;
+      --text:#f3f3f6;
+      --muted:#b9bac7;
+      --purple:#6f2cff;
+      --gold:#c9a227;
+      --line:#23233a;
+      --ok:#2fe39a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(111,44,255,.25), transparent 60%),
+                  radial-gradient(900px 600px at 80% 0%, rgba(201,162,39,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .mark{
+      width:14px;height:14px;border-radius:4px;
+      background: linear-gradient(135deg,var(--purple),var(--gold));
+      box-shadow: 0 0 24px rgba(111,44,255,.25);
+    }
+    .brand b{letter-spacing:.2px}
+    .pill{
+      padding:8px 12px;border:1px solid var(--line);
+      background: rgba(18,18,26,.65);
+      border-radius:999px;color:var(--muted);font-size:13px
+    }
+    .hero{margin-top:26px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:920px){.hero{grid-template-columns:1fr}}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(18,18,26,.7);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    h1{margin:0;font-size:40px;line-height:1.08}
+    @media (max-width:520px){h1{font-size:32px}}
+    .sub{margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.55}
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:11px 14px;border-radius:12px;border:1px solid var(--line);
+      background: rgba(22,22,35,.8);
+      font-weight:600;font-size:14px
+    }
+    .btnPrimary{
+      border-color: rgba(111,44,255,.55);
+      background: linear-gradient(135deg, rgba(111,44,255,.95), rgba(111,44,255,.55));
+      box-shadow: 0 0 0 4px rgba(111,44,255,.12);
+    }
+    .btnGold{
+      border-color: rgba(201,162,39,.6);
+      background: linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));
+      color:#101018;
+      box-shadow: 0 0 0 4px rgba(201,162,39,.10);
+    }
+    .grid{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+    .mod{
+      padding:14px;border-radius:16px;border:1px solid var(--line);
+      background: rgba(18,18,26,.6)
+    }
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    .mod h3{margin:8px 0 0;font-size:16px}
+    .mod p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+    .sectionTitle{margin:22px 0 10px;font-size:14px;color:var(--muted);letter-spacing:.2px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    @media (max-width:920px){.two{grid-template-columns:1fr}}
+    .list{margin:10px 0 0;padding:0 0 0 16px;color:var(--muted);line-height:1.7}
+    .footer{margin-top:26px;color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+    .k{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.55)}
+    .divider{height:1px;background:var(--line);margin:18px 0}
+  </style>
 </head>
-<body style="margin:0;font-family:system-ui,Segoe UI,Arial;">
-  <main style="min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;">
-    <h1 style="margin:0;">Automation Central</h1>
-    <p style="margin:0;opacity:.75;">Pages is live. Domain wiring next.</p>
-  </main>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <span class="mark"></span>
+        <b>Automation Central</b>
+      </div>
+      <div class="pill">automationcentral.online is live</div>
+    </div>
+
+    <div class="hero">
+      <div class="card">
+        <h1>Creator OS for turning ideas into systems.</h1>
+        <p class="sub">
+          Automation Central is where creator workflows become repeatable automation.
+          Build, deploy, and expand modules over time without rebuilding the foundation.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn btnPrimary" href="#modules">Open Modules</a>
+          <a class="btn" href="#roadmap">Roadmap</a>
+          <a class="btn btnGold" href="http://www.creatorsclub.store" target="_blank" rel="noreferrer">follow The Creators Club</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="two">
+          <div>
+            <div class="sectionTitle">What this site will become</div>
+            <ul class="list">
+              <li>Public hub + documentation for Automation Central.</li>
+              <li>Module launcher for ARIA-powered tools.</li>
+              <li>Secure endpoints and routing for automations (later via api subdomain).</li>
+            </ul>
+          </div>
+          <div>
+            <div class="sectionTitle">Today’s status</div>
+            <ul class="list">
+              <li>Cloudflare Pages hosting + SSL active.</li>
+              <li>GitHub-backed deploy pipeline working.</li>
+              <li>Ready for real UI + module links.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sectionTitle">Quick Links</div>
+        <div class="grid" style="grid-template-columns:1fr;gap:10px;margin-top:10px">
+          <a class="mod" href="#modules">
+            <div class="tag"><span class="dot"></span> Modules</div>
+            <h3>Launchpad</h3>
+            <p>Central entry to every tool and workflow.</p>
+          </a>
+          <a class="mod" href="#roadmap">
+            <div class="tag"><span class="dot"></span> Roadmap</div>
+            <h3>Build Queue</h3>
+            <p>What gets added next, in order.</p>
+          </a>
+          <a class="mod" href="http://www.creatorsclub.store" target="_blank" rel="noreferrer">
+            <div class="tag"><span class="dot"></span> Creators Club</div>
+            <h3>Creator OS Storefront</h3>
+            <p>Templates, systems, and packaged assets.</p>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="modules" class="sectionTitle" style="margin-top:26px">Modules</div>
+    <div class="grid">
+      <div class="mod">
+        <div class="tag"><span class="dot"></span> Coming next</div>
+        <h3>ARIA Intake</h3>
+        <p>Collect user intent, route to the right agent/workflow, log results.</p>
+      </div>
+      <div class="mod">
+        <div class="tag"><span class="dot"></span> Planned</div>
+        <h3>Publisher Ops</h3>
+        <p>Content scheduling, publishing, and tracking across platforms.</p>
+      </div>
+      <div class="mod">
+        <div class="tag"><span class="dot"></span> Planned</div>
+        <h3>Competitive Intel</h3>
+        <p>Monitor competitors, extract insights, and generate action plans.</p>
+      </div>
+    </div>
+
+    <div id="roadmap" class="sectionTitle">Roadmap</div>
+    <div class="card">
+      <ol class="list">
+        <li>Replace placeholder UI (this step).</li>
+        <li>Add api.automationcentral.online (Worker) for endpoints and routing.</li>
+        <li>Add n8n.automationcentral.online (tunnel) for internal workflows.</li>
+        <li>Add simple “Modules” pages for each tool with docs + status.</li>
+      </ol>
+    </div>
+
+    <div class="footer">
+      <span class="k">Canonical: automationcentral.online</span>
+      <span class="k">Host: Cloudflare Pages</span>
+      <span class="k">Repo: creatorsclub-aria/automationcentral-site</span>
+    </div>
+  </div>
 </body>
 </html>
-
-<!-- deploy ping: 2026-01-21T00:39:06.4727679-08:00 -->
-
