@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Modules · Automation Central</title>
-  <meta name="description" content="Automation Central modules and status." />
+  <meta name="description" content="Browse Automation Central modules and choose the path that matches your goal." />
   <style>
     :root{
       --bg:#0b0b10; --panel:#12121a; --text:#f3f3f6; --muted:#b9bac7;
@@ -13,79 +13,92 @@
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px 18px 60px}
     .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
-    .brand{color:var(--gold);font-weight:800}
-    .pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.6);color:var(--muted);font-size:12px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-    @media (max-width:920px){.grid{grid-template-columns:1fr}}
-    .card{border:1px solid var(--line);background:rgba(18,18,26,.7);border-radius:16px;padding:14px}
+    .brand{color:var(--gold);font-weight:900}
+    .nav a{color:var(--muted);font-weight:800;font-size:13px;padding:7px 10px;border-radius:999px;border:1px solid transparent;background:rgba(18,18,26,.35)}
+    .nav a:hover{border-color:var(--line);background:rgba(18,18,26,.65);color:var(--text)}
+    .nav a.primary{color:#101018;background:linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));border-color:rgba(201,162,39,.55)}
+    h1{margin:0 0 10px;font-size:36px}
+    p{margin:6px 0;color:var(--muted);line-height:1.55}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{
+      border:1px solid var(--line);
+      background:rgba(18,18,26,.72);
+      border-radius:18px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
     .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
     .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
-    h1{margin:0 0 6px}
-    h3{margin:8px 0 0;font-size:16px}
-    p{margin:6px 0 0;color:var(--muted);line-height:1.5;font-size:13px}
-    .link{display:inline-block;margin-top:10px;color:var(--purple);font-weight:700}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{font-size:14px}
+    .btn{
+      margin-top:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:11px 14px;
+      border-radius:12px;
+      border:1px solid rgba(201,162,39,.65);
+      background:linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));
+      color:#101018;
+      font-weight:900;
+    }
+    .hint{margin-top:18px;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted)}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="nav">
       <span class="brand">Automation Central</span>
-      <span style="opacity:.45;">|</span>
       <a href="/">Home</a>
-      <a href="/intake">Intake</a>
-      <a href="/modules" class="pill">Modules</a>
-      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:700;">follow The Creators Club</a>
+      <a href="/intake">Start Intake</a>
+      <a class="primary" href="/modules">Browse Modules</a>
+      <a href="/docs">How it works</a>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:900;background:rgba(18,18,26,.35);border:1px solid rgba(201,162,39,.25);">follow The Creators Club</a>
     </div>
 
     <h1>Modules</h1>
-    <div class="pill">Status board for what exists now vs what is next.</div>
+    <p>Each module is a focused build path. Pick the one that matches what you want to accomplish.</p>
 
     <div class="grid">
       <div class="card">
-        <div class="tag"><span class="dot"></span> Next</div>
-        <h3>ARIA Intake</h3>
-        <p>Normalize requests and route them into the correct automation or agent.</p>
-        <a class="link" href="/modules/aria">Open ARIA</a>
+        <div>
+          <div class="tag"><span class="dot"></span> Core routing</div>
+          <h3>ARIA Intake & Routing</h3>
+          <p>Turn raw ideas or requests into structured, actionable build instructions.</p>
+          <p><b>Best for:</b> People who are not sure how to describe what they want technically.</p>
+        </div>
+        <a class="btn" href="/modules/aria">Open ARIA</a>
       </div>
 
       <div class="card">
-        <div class="tag"><span class="dot"></span> Planned</div>
-        <h3>Publisher Ops</h3>
-        <p>Schedule, publish, and log performance across platforms.</p>
-        <a class="link" href="/modules/publisher">Open Publisher</a>
+        <div>
+          <div class="tag"><span class="dot"></span> Publishing</div>
+          <h3>Publisher Ops</h3>
+          <p>Plan, schedule, publish, and log content across platforms from one system.</p>
+          <p><b>Best for:</b> Creators who post regularly and want consistency.</p>
+        </div>
+        <a class="btn" href="/modules/publisher">Open Publisher</a>
       </div>
 
       <div class="card">
-        <div class="tag"><span class="dot"></span> Planned</div>
-        <h3>Competitive Intel</h3>
-        <p>Monitor competitors and generate actionable reporting.</p>
-        <a class="link" href="/modules/intel">Open Intel</a>
+        <div>
+          <div class="tag"><span class="dot"></span> Monitoring</div>
+          <h3>Competitive Intelligence</h3>
+          <p>Track competitors, capture signals, and receive clear reports automatically.</p>
+          <p><b>Best for:</b> Founders and marketers who want visibility without manual research.</p>
+        </div>
+        <a class="btn" href="/modules/intel">Open Intel</a>
       </div>
     </div>
 
-    <div class="grid" style="margin-top:12px">
-      <div class="card">
-        <div class="tag"><span class="dot"></span> Live</div>
-        <h3>API</h3>
-        <p><b>api.automationcentral.online</b> supports <code style="color:var(--muted)">/health</code> and <code style="color:var(--muted)">POST /intake</code>.</p>
-        <a class="link" href="https://api.automationcentral.online/health" target="_blank" rel="noreferrer">Check /health</a>
-      </div>
-
-      <div class="card">
-        <div class="tag"><span class="dot"></span> Live</div>
-        <h3>Intake Form</h3>
-        <p>Web intake is active and logging to Google Sheets.</p>
-        <a class="link" href="/intake">Open Intake</a>
-      </div>
-
-      <div class="card">
-        <div class="tag"><span class="dot"></span> Secured</div>
-        <h3>n8n Gate</h3>
-        <p>n8n.automationcentral.online is protected behind Cloudflare Access.</p>
-        <a class="link" href="https://n8n.automationcentral.online" target="_blank" rel="noreferrer">Open Gate</a>
-      </div>
+    <div class="hint">
+      Not sure which module applies? <a href="/intake" style="color:var(--gold);font-weight:900;">Start with Intake</a> and describe your goal in plain English.
     </div>
   </div>
 </body>
