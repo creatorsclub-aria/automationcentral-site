@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modules · Automation Central</title>
+  <meta name="description" content="Automation Central modules and status." />
+  <style>
+    :root{
+      --bg:#0b0b10; --panel:#12121a; --text:#f3f3f6; --muted:#b9bac7;
+      --purple:#6f2cff; --gold:#c9a227; --line:#23233a; --ok:#2fe39a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .brand{color:var(--gold);font-weight:800}
+    .pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.6);color:var(--muted);font-size:12px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid var(--line);background:rgba(18,18,26,.7);border-radius:16px;padding:14px}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    h1{margin:0 0 6px}
+    h3{margin:8px 0 0;font-size:16px}
+    p{margin:6px 0 0;color:var(--muted);line-height:1.5;font-size:13px}
+    .link{display:inline-block;margin-top:10px;color:var(--purple);font-weight:700}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <span class="brand">Automation Central</span>
+      <span style="opacity:.45;">|</span>
+      <a href="/">Home</a>
+      <a href="/intake">Intake</a>
+      <a href="/modules" class="pill">Modules</a>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:700;">follow The Creators Club</a>
+    </div>
+
+    <h1>Modules</h1>
+    <div class="pill">Status board for what exists now vs what is next.</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Next</div>
+        <h3>ARIA Intake</h3>
+        <p>Normalize requests and route them into the correct automation or agent.</p>
+        <a class="link" href="/modules/aria">Open ARIA</a>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Planned</div>
+        <h3>Publisher Ops</h3>
+        <p>Schedule, publish, and log performance across platforms.</p>
+        <a class="link" href="/modules/publisher">Open Publisher</a>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Planned</div>
+        <h3>Competitive Intel</h3>
+        <p>Monitor competitors and generate actionable reporting.</p>
+        <a class="link" href="/modules/intel">Open Intel</a>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:12px">
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Live</div>
+        <h3>API</h3>
+        <p><b>api.automationcentral.online</b> supports <code style="color:var(--muted)">/health</code> and <code style="color:var(--muted)">POST /intake</code>.</p>
+        <a class="link" href="https://api.automationcentral.online/health" target="_blank" rel="noreferrer">Check /health</a>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Live</div>
+        <h3>Intake Form</h3>
+        <p>Web intake is active and logging to Google Sheets.</p>
+        <a class="link" href="/intake">Open Intake</a>
+      </div>
+
+      <div class="card">
+        <div class="tag"><span class="dot"></span> Secured</div>
+        <h3>n8n Gate</h3>
+        <p>n8n.automationcentral.online is protected behind Cloudflare Access.</p>
+        <a class="link" href="https://n8n.automationcentral.online" target="_blank" rel="noreferrer">Open Gate</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
