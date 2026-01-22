@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Automation Central</title>
-  <meta name="description" content="Automation Central is the Creator OS for turning ideas into systems, content into products, and workflows into automation." />
+  <meta name="description" content="Tell us what you want automated. Automation Central turns your goal into a working system." />
   <style>
     :root{
       --bg:#0b0b10;
@@ -21,148 +21,186 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(111,44,255,.25), transparent 60%),
-                  radial-gradient(900px 600px at 80% 0%, rgba(201,162,39,.18), transparent 55%),
+      background: radial-gradient(1200px 600px at 15% -10%, rgba(111,44,255,.25), transparent 60%),
+                  radial-gradient(900px 600px at 85% 0%, rgba(201,162,39,.18), transparent 55%),
                   var(--bg);
       color:var(--text);
     }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .wrap{max-width:1100px;margin:0 auto;padding:26px 18px 70px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .brand{display:flex;align-items:center;gap:10px}
     .mark{
       width:14px;height:14px;border-radius:4px;
       background: linear-gradient(135deg,var(--purple),var(--gold));
       box-shadow: 0 0 24px rgba(111,44,255,.25);
     }
-    .pill{
-      padding:8px 12px;border:1px solid var(--line);
-      background: rgba(18,18,26,.65);
-      border-radius:999px;color:var(--muted);font-size:13px
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .nav a{
+      color:var(--muted);
+      font-weight:700;
+      font-size:13px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      background: rgba(18,18,26,.35);
     }
-    .hero{margin-top:26px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-    @media (max-width:920px){.hero{grid-template-columns:1fr}}
+    .nav a:hover{border-color:var(--line);background:rgba(18,18,26,.65);color:var(--text)}
+    .nav a.primary{color:#101018;background:linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));border-color:rgba(201,162,39,.55)}
+    .hero{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:1.25fr .75fr;
+      gap:14px
+    }
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
     .card{
       border:1px solid var(--line);
-      background: rgba(18,18,26,.7);
+      background: rgba(18,18,26,.72);
       border-radius:18px;
       padding:18px;
       box-shadow: 0 10px 30px rgba(0,0,0,.25);
     }
-    h1{margin:0;font-size:40px;line-height:1.08}
+    h1{margin:0;font-size:42px;line-height:1.06}
     @media (max-width:520px){h1{font-size:32px}}
     .sub{margin:12px 0 0;color:var(--muted);font-size:16px;line-height:1.55}
-    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
       padding:11px 14px;border-radius:12px;border:1px solid var(--line);
       background: rgba(22,22,35,.8);
-      font-weight:600;font-size:14px
+      font-weight:850;font-size:14px
     }
     .btnPrimary{
-      border-color: rgba(111,44,255,.55);
-      background: linear-gradient(135deg, rgba(111,44,255,.95), rgba(111,44,255,.55));
-      box-shadow: 0 0 0 4px rgba(111,44,255,.12);
-    }
-    .btnGold{
-      border-color: rgba(201,162,39,.6);
+      border-color: rgba(201,162,39,.65);
       background: linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));
       color:#101018;
       box-shadow: 0 0 0 4px rgba(201,162,39,.10);
     }
-    .grid{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    @media (max-width:920px){.grid{grid-template-columns:1fr}}
-    .mod{
-      padding:14px;border-radius:16px;border:1px solid var(--line);
-      background: rgba(18,18,26,.6)
+    .btnAlt{
+      border-color: rgba(111,44,255,.55);
+      background: linear-gradient(135deg, rgba(111,44,255,.95), rgba(111,44,255,.55));
+      box-shadow: 0 0 0 4px rgba(111,44,255,.10);
     }
+    .btnGhost{background:rgba(18,18,26,.45);color:var(--text)}
+    .small{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.45}
+    .divider{height:1px;background:var(--line);margin:16px 0}
+    .sectionTitle{margin:18px 0 10px;color:var(--muted);font-size:13px;letter-spacing:.2px}
+    .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:980px){.grid3{grid-template-columns:1fr}}
+    .tile{
+      border:1px solid var(--line);
+      background: rgba(18,18,26,.6);
+      border-radius:16px;
+      padding:14px;
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .tile:hover{transform: translateY(-2px);border-color: rgba(111,44,255,.35)}
     .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
     .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
-    .mod h3{margin:8px 0 0;font-size:16px}
-    .mod p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
-    .sectionTitle{margin:22px 0 10px;font-size:14px;color:var(--muted);letter-spacing:.2px}
-    .footer{margin-top:26px;color:var(--muted);font-size:12px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
-    .k{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.55)}
-    .divider{height:1px;background:var(--line);margin:18px 0}
+    .tile h3{margin:8px 0 0;font-size:16px}
+    .tile p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    @media (max-width:980px){.steps{grid-template-columns:1fr}}
+    .stepNum{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:26px;height:26px;border-radius:9px;
+      border:1px solid var(--line);
+      background:rgba(22,22,35,.8);
+      font-weight:900;color:var(--text)
+    }
+    .krow{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .k{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.55);color:var(--muted);font-size:12px}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <div class="topbar">
+    <div class="top">
       <div class="brand">
         <span class="mark"></span>
         <b>Automation Central</b>
       </div>
-      <div class="pill">Canonical: automationcentral.online</div>
+
+      <div class="nav">
+        <a class="primary" href="/intake">Start Intake</a>
+        <a href="/modules">Browse</a>
+        <a href="/docs">How it works</a>
+        <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);background:rgba(18,18,26,.35);border:1px solid rgba(201,162,39,.25);">follow The Creators Club</a>
+      </div>
     </div>
 
     <div class="hero">
       <div class="card">
-        <h1>Creator OS for turning ideas into systems.</h1>
+        <h1>Turn your goal into a working automation.</h1>
         <p class="sub">
-          Automation Central is where creator workflows become repeatable automation.
-          Build modules, route intake, and scale outputs without rebuilding the foundation.
+          Tell us what you want done. We build the system that does it.
+          If you are not technical, that is fine. Just describe the outcome.
         </p>
 
-        <div class="ctaRow">
-          <a class="btn btnPrimary" href="/modules/aria">Open Modules</a>
-          <a class="btn" href="/intake">Intake</a>
-          <a class="btn" href="/docs">Docs</a>
-          <a class="btn" href="/modules/publisher">Publisher</a>
-          <a class="btn" href="/modules/intel">Intel</a>
-          <a class="btn btnGold" href="http://www.creatorsclub.store" target="_blank" rel="noreferrer">follow The Creators Club</a>
+        <div class="cta">
+          <a class="btn btnPrimary" href="/intake">Start Intake</a>
+          <a class="btn btnAlt" href="/modules">See what’s available</a>
+          <a class="btn btnGhost" href="/docs">How it works</a>
         </div>
+
+        <p class="small">
+          Example: “Post my content weekly, track what I posted, and email me a report every Friday.”
+        </p>
 
         <div class="divider"></div>
 
-        <div class="sectionTitle">Live endpoints</div>
-        <div class="grid">
-          <div class="mod">
-            <div class="tag"><span class="dot"></span> API</div>
-            <h3>ac-api</h3>
-            <p>/health and /intake are live at api.automationcentral.online</p>
-          </div>
-          <div class="mod">
-            <div class="tag"><span class="dot"></span> Intake</div>
-            <h3>Logging</h3>
-            <p>Submissions are writing to Google Sheets successfully.</p>
-          </div>
-          <div class="mod">
-            <div class="tag"><span class="dot"></span> Security</div>
-            <h3>n8n Gate</h3>
-            <p>n8n.automationcentral.online is protected behind Cloudflare Access.</p>
-          </div>
+        <div class="sectionTitle">Pick the outcome you want</div>
+        <div class="grid3">
+          <a class="tile" href="/intake">
+            <div class="tag"><span class="dot"></span> Most common</div>
+            <h3>I want to automate a repetitive task</h3>
+            <p>Forms, emails, DMs, reminders, logging, and handoffs. Less busy-work.</p>
+          </a>
+
+          <a class="tile" href="/intake">
+            <div class="tag"><span class="dot"></span> Creator-friendly</div>
+            <h3>I want a content system</h3>
+            <p>Plan, schedule, publish, and track content with one workflow.</p>
+          </a>
+
+          <a class="tile" href="/intake">
+            <div class="tag"><span class="dot"></span> Competitive</div>
+            <h3>I want to track competitors</h3>
+            <p>Monitor competitor activity and get clean reporting without manual digging.</p>
+          </a>
         </div>
       </div>
 
       <div class="card">
-        <div class="sectionTitle">Modules</div>
-        <div class="grid" style="grid-template-columns:1fr;gap:10px;margin-top:10px">
-          <a class="mod" href="/modules/aria">
-            <div class="tag"><span class="dot"></span> Next</div>
-            <h3>ARIA Intake</h3>
-            <p>Normalize requests and route to the right automation.</p>
-          </a>
-          <a class="mod" href="/modules/publisher">
-            <div class="tag"><span class="dot"></span> Planned</div>
-            <h3>Publisher Ops</h3>
-            <p>Schedule, publish, log performance.</p>
-          </a>
-          <a class="mod" href="/modules/intel">
-            <div class="tag"><span class="dot"></span> Planned</div>
-            <h3>Competitive Intel</h3>
-            <p>Track competitors and generate actionable reports.</p>
-          </a>
+        <div class="sectionTitle">What happens after you submit</div>
+        <div class="steps">
+          <div class="tile">
+            <div class="tag"><span class="stepNum">1</span> Submit</div>
+            <h3>We capture your request</h3>
+            <p>Your intake is logged with your goal, platform, and constraints.</p>
+          </div>
+          <div class="tile">
+            <div class="tag"><span class="stepNum">2</span> Route</div>
+            <h3>We match the right module</h3>
+            <p>We route your request to the correct build path (no guessing).</p>
+          </div>
+          <div class="tile">
+            <div class="tag"><span class="stepNum">3</span> Deliver</div>
+            <h3>You get a working system</h3>
+            <p>Functional workflow, setup steps, logging, and a clear next action.</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="sectionTitle">Quick links</div>
+        <div class="krow">
+          <a class="k" href="/intake">/intake</a>
+          <a class="k" href="/modules">/modules</a>
+          <a class="k" href="/docs">/docs</a>
         </div>
       </div>
-    </div>
-
-    <div class="footer">
-      <span class="k">Host: Cloudflare Pages</span>
-      <span class="k">API: api.automationcentral.online</span>
-      <span class="k">Repo: creatorsclub-aria/automationcentral-site</span>
     </div>
   </div>
 </body>
 </html>
-
