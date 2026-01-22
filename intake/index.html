@@ -1,0 +1,135 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Intake · Automation Central</title>
+  <meta name="description" content="Submit an Automation Central request." />
+  <style>
+    :root{
+      --bg:#0b0b10; --panel:#12121a; --text:#f3f3f6; --muted:#b9bac7;
+      --purple:#6f2cff; --gold:#c9a227; --line:#23233a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    a{color:var(--purple);text-decoration:none}
+    .wrap{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .brand{color:var(--gold);font-weight:800}
+    .card{border:1px solid var(--line);background:rgba(18,18,26,.7);border-radius:16px;padding:16px}
+    h1{margin:0 0 10px}
+    p{margin:8px 0;color:var(--muted);line-height:1.55}
+    label{display:block;margin:12px 0 6px;color:var(--muted);font-size:13px}
+    input, textarea, select{
+      width:100%; padding:10px 12px; border-radius:12px;
+      border:1px solid var(--line); background:rgba(22,22,35,.7); color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.row{grid-template-columns:1fr}}
+    .btnRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+    button{
+      padding:11px 14px;border-radius:12px;border:1px solid var(--line);
+      background:linear-gradient(135deg, rgba(111,44,255,.95), rgba(111,44,255,.55));
+      color:var(--text); font-weight:700; cursor:pointer;
+      box-shadow: 0 0 0 4px rgba(111,44,255,.10);
+    }
+    .small{font-size:12px;color:var(--muted)}
+    .ok{display:none;margin-top:14px;border:1px solid rgba(47,227,154,.35);background:rgba(47,227,154,.08);padding:12px;border-radius:12px}
+    .err{display:none;margin-top:14px;border:1px solid rgba(255,80,80,.35);background:rgba(255,80,80,.08);padding:12px;border-radius:12px}
+    code{background:rgba(18,18,26,.85);padding:2px 6px;border-radius:8px;border:1px solid var(--line)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <span class="brand">Automation Central</span>
+      <span style="opacity:.45;">|</span>
+      <a href="/">Home</a>
+      <a href="/modules/aria">ARIA</a>
+      <a href="/modules/publisher">Publisher</a>
+      <a href="/modules/intel">Intel</a>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:700;">follow The Creators Club</a>
+    </div>
+
+    <div class="card">
+      <h1>Intake</h1>
+      <p>Submit what you want Automation Central to build or automate. This form writes to the Intake Sheet through the live API.</p>
+
+      <form id="f">
+        <div class="row">
+          <div>
+            <label>Name</label>
+            <input name="name" required />
+          </div>
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" required />
+          </div>
+        </div>
+
+        <label>Intent</label>
+        <select name="intent" required>
+          <option value="">Select one</option>
+          <option>Automation build</option>
+          <option>Agent build</option>
+          <option>Content system</option>
+          <option>Audit / fix</option>
+          <option>Other</option>
+        </select>
+
+        <label>Message</label>
+        <textarea name="message" placeholder="Describe the goal, inputs, outputs, and constraints." required></textarea>
+
+        <div class="btnRow">
+          <button type="submit">Submit</button>
+          <span class="small">Endpoint: <code>POST https://api.automationcentral.online/intake</code></span>
+        </div>
+
+        <div id="ok" class="ok">Submitted. Logged to the Intake Sheet.</div>
+        <div id="err" class="err">Error submitting. Check console.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("f");
+    const ok = document.getElementById("ok");
+    const err = document.getElementById("err");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      ok.style.display = "none";
+      err.style.display = "none";
+
+      const fd = new FormData(form);
+      const payload = {
+        source: "site",
+        name: fd.get("name"),
+        email: fd.get("email"),
+        intent: fd.get("intent"),
+        message: fd.get("message"),
+        meta: { page: "/intake" }
+      };
+
+      try {
+        const r = await fetch("https://api.automationcentral.online/intake", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const j = await r.json();
+        if (!r.ok) throw new Error(JSON.stringify(j));
+
+        ok.style.display = "block";
+        form.reset();
+      } catch (e2) {
+        console.error(e2);
+        err.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
