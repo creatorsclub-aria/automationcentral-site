@@ -1,0 +1,109 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Docs · Automation Central</title>
+  <meta name="description" content="Automation Central documentation, endpoints, modules, and system status." />
+  <style>
+    :root{
+      --bg:#0b0b10; --panel:#12121a; --text:#f3f3f6; --muted:#b9bac7;
+      --purple:#6f2cff; --gold:#c9a227; --line:#23233a; --ok:#2fe39a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    a{color:var(--purple);text-decoration:none;font-weight:600}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .brand{color:var(--gold);font-weight:800}
+    .pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(18,18,26,.6);color:var(--muted);font-size:12px}
+    h1{margin:0 0 8px}
+    h2{margin:22px 0 6px;font-size:18px}
+    p{margin:6px 0;color:var(--muted);line-height:1.55}
+    ul{margin:8px 0 8px 18px;color:var(--muted)}
+    li{margin:6px 0}
+    code{background:rgba(18,18,26,.85);padding:3px 6px;border-radius:8px;border:1px solid var(--line)}
+    .card{border:1px solid var(--line);background:rgba(18,18,26,.7);border-radius:16px;padding:14px;margin-top:12px}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <span class="brand">Automation Central</span>
+      <span style="opacity:.45;">|</span>
+      <a href="/">Home</a>
+      <a href="/modules">Modules</a>
+      <a href="/intake">Intake</a>
+      <span class="pill">Docs</span>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:700;">follow The Creators Club</a>
+    </div>
+
+    <h1>Documentation</h1>
+    <p>This page describes the live components, endpoints, and security posture of Automation Central.</p>
+
+    <div class="card">
+      <h2>System Overview</h2>
+      <p>Automation Central is a Creator OS for routing ideas, content, and requests into structured automations and agents.</p>
+      <ul>
+        <li>Frontend: Cloudflare Pages</li>
+        <li>API: Cloudflare Worker (<code>ac-api</code>)</li>
+        <li>Intake Logging: Google Sheets</li>
+        <li>Automation Runtime: n8n (gated)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Live Endpoints</h2>
+      <div class="grid">
+        <div>
+          <div class="tag"><span class="dot"></span> Public</div>
+          <p><code>GET https://api.automationcentral.online/health</code></p>
+          <p>Health check for the API.</p>
+        </div>
+        <div>
+          <div class="tag"><span class="dot"></span> Public (origin-restricted)</div>
+          <p><code>POST https://api.automationcentral.online/intake-public</code></p>
+          <p>Used by the website intake form.</p>
+        </div>
+        <div>
+          <div class="tag"><span class="dot"></span> Private (keyed)</div>
+          <p><code>POST https://api.automationcentral.online/intake</code></p>
+          <p>Used by automations and agents with <code>x-ac-key</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Modules</h2>
+      <ul>
+        <li><b>ARIA Intake</b> – normalize and route requests (<a href="/modules/aria">/modules/aria</a>)</li>
+        <li><b>Publisher Ops</b> – scheduling and publishing (<a href="/modules/publisher">/modules/publisher</a>)</li>
+        <li><b>Competitive Intel</b> – monitoring and reporting (<a href="/modules/intel">/modules/intel</a>)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Security</h2>
+      <ul>
+        <li>HTTPS enforced via Cloudflare</li>
+        <li>CORS restricted to canonical origin</li>
+        <li>Private intake endpoint requires API key</li>
+        <li>n8n is gated behind Cloudflare Access</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Status</h2>
+      <ul>
+        <li>API: Operational</li>
+        <li>Intake: Operational</li>
+        <li>Modules: Live / Planned</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
