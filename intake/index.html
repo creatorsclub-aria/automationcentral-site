@@ -84,7 +84,7 @@
 
         <div class="btnRow">
           <button type="submit">Submit</button>
-          <span class="small">Endpoint: <code>POST https://api.automationcentral.online/intake</code></span>
+          <span class="small">Endpoint: <code>POST https://api.automationcentral.online/intake-public</code></span>
         </div>
 
         <div id="ok" class="ok">Submitted. Logged to the Intake Sheet.</div>
@@ -114,7 +114,7 @@
       };
 
       try {
-        const r = await fetch("https://api.automationcentral.online/intake", {
+        const r = await fetch("https://api.automationcentral.online/intake-public", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(payload)
@@ -133,3 +133,4 @@
   </script>
 </body>
 </html>
+
