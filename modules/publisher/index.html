@@ -4,26 +4,108 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Publisher Ops · Automation Central</title>
+  <meta name="description" content="Publisher Ops helps creators plan, schedule, publish, and track content consistently." />
+  <style>
+    :root{
+      --bg:#0b0b10; --panel:#12121a; --text:#f3f3f6; --muted:#b9bac7;
+      --purple:#6f2cff; --gold:#c9a227; --line:#23233a; --ok:#2fe39a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+    .brand{color:var(--gold);font-weight:900}
+    .nav a{color:var(--muted);font-weight:800;font-size:13px;padding:7px 10px;border-radius:999px;border:1px solid transparent;background:rgba(18,18,26,.35)}
+    .nav a:hover{border-color:var(--line);background:rgba(18,18,26,.65);color:var(--text)}
+    .nav a.primary{color:#101018;background:linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));border-color:rgba(201,162,39,.55)}
+    .card{border:1px solid var(--line);background:rgba(18,18,26,.72);border-radius:18px;padding:18px;margin-top:12px}
+    h1{margin:0 0 8px;font-size:34px}
+    p{margin:8px 0;color:var(--muted);line-height:1.55}
+    .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;border-radius:12px;border:1px solid var(--line);
+      background:rgba(22,22,35,.65);font-weight:900
+    }
+    .btnPrimary{
+      border-color: rgba(201,162,39,.65);
+      background: linear-gradient(135deg, rgba(201,162,39,.95), rgba(201,162,39,.55));
+      color:#101018;
+      box-shadow: 0 0 0 4px rgba(201,162,39,.10);
+    }
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:10px}
+    @media (max-width:920px){.grid{grid-template-columns:1fr}}
+    .tile{border:1px solid var(--line);background:rgba(18,18,26,.55);border-radius:16px;padding:14px}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--ok)}
+    h2{margin:8px 0 6px;font-size:18px}
+    ul{margin:8px 0 0 18px;color:var(--muted)}
+    li{margin:6px 0}
+  </style>
 </head>
-<body style="margin:0;font-family:system-ui;background:#0b0b10;color:#f3f3f6;">
-  <main style="max-width:900px;margin:40px auto;padding:20px;">
-<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;">
-  <a href="/" style="color:#c9a227;text-decoration:none;font-weight:700;">Automation Central</a>
-  <span style="opacity:.45;">|</span>
-  <a href="/modules/aria" style="color:#6f2cff;text-decoration:none;">ARIA</a>
-  <a href="/modules/publisher" style="color:#6f2cff;text-decoration:none;">Publisher</a>
-  <a href="/modules/intel" style="color:#6f2cff;text-decoration:none;">Intel</a>
-</div>
-    <h1>Publisher Ops</h1>
-    <p>Automation for content scheduling, publishing, and tracking.</p>
-    <ul>
-      <li>Multi-platform publishing</li>
-      <li>Queue-based scheduling</li>
-      <li>Performance logging</li>
-    </ul>
-    <p>Status: <b>Planned</b></p>
-    <a href="/" style="color:#6f2cff;">← Back to Automation Central</a>
-  </main>
+<body>
+  <div class="wrap">
+    <div class="nav">
+      <span class="brand">Automation Central</span>
+      <a href="/">Home</a>
+      <a href="/intake">Start Intake</a>
+      <a href="/modules" class="primary">Modules</a>
+      <a href="/docs">How it works</a>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:900;background:rgba(18,18,26,.35);border:1px solid rgba(201,162,39,.25);">follow The Creators Club</a>
+    </div>
+
+    <div class="card">
+      <div class="tag"><span class="dot"></span> Publisher module</div>
+      <h1>Publisher Ops</h1>
+      <p>
+        Publisher Ops helps you post consistently without chaos.
+        Plan your content, schedule it, publish it, and track what went out.
+      </p>
+
+      <div class="cta">
+        <a class="btn btnPrimary" href="/intake">Start with Intake</a>
+        <a class="btn" href="/modules">Back to Modules</a>
+        <a class="btn" href="/docs">How it works</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>What Publisher Ops does</h2>
+      <div class="grid">
+        <div class="tile">
+          <div class="tag"><span class="dot"></span> Plan</div>
+          <p>Turn ideas into a weekly schedule with clear posting rules.</p>
+        </div>
+        <div class="tile">
+          <div class="tag"><span class="dot"></span> Publish</div>
+          <p>Schedule and post content to your platforms on time.</p>
+        </div>
+        <div class="tile">
+          <div class="tag"><span class="dot"></span> Track</div>
+          <p>Log every post and generate simple performance reporting.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>What to include in your request</h2>
+      <ul>
+        <li>Which platforms you post on (Instagram, TikTok, YouTube, Facebook, X)</li>
+        <li>How often you want to post</li>
+        <li>Whether you want scheduling, posting, or both</li>
+        <li>Where you want logs stored (Google Sheets recommended)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Good example requests</h2>
+      <ul>
+        <li>“Post three times a week to Instagram and log every post to a Google Sheet.”</li>
+        <li>“Turn my weekly topic list into short scripts, then schedule YouTube uploads.”</li>
+        <li>“Every Friday, send me a summary of what was posted and what performed best.”</li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
-
