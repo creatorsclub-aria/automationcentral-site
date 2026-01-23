@@ -140,8 +140,7 @@
         const j = await r.json();
         if (!r.ok) throw new Error(JSON.stringify(j));
 
-        ok.style.display = "block";
-        form.reset();
+        window.location.href = "/thanks";
       } catch (e2) {
         console.error(e2);
         err.style.display = "block";
@@ -150,4 +149,5 @@
   </script>
 </body>
 </html>
+
 
