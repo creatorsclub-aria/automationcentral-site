@@ -39,6 +39,7 @@
       color:#101018; font-weight:950; cursor:pointer;
       box-shadow: 0 0 0 4px rgba(201,162,39,.10);
     }
+    button[disabled]{opacity:.65;cursor:not-allowed}
     .ghost{
       padding:12px 14px;border-radius:12px;border:1px solid var(--line);
       background:rgba(22,22,35,.55); color:var(--text); font-weight:900;
@@ -48,22 +49,29 @@
     .examples{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
     .ex{padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(18,18,26,.55);margin-top:10px;color:var(--muted);font-size:13px;line-height:1.5}
     code{background:rgba(18,18,26,.85);padding:2px 6px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
+    .kicker{display:inline-block;font-weight:950;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:rgba(201,162,39,.9);margin-bottom:10px}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:720px){.row2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="nav">
-  <span class="brand">Automation Central</span>
-  <a href="/">Home</a>
-  <a href="/intake" class="primary">Start Intake</a>
-  <a href="/modules">Browse</a>
-  <a href="/docs">How it works</a>
-  <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:900;background:rgba(18,18,26,.35);border:1px solid rgba(201,162,39,.25);">follow The Creators Club</a>
-</div>
+      <span class="brand">Automation Central</span>
+      <a href="/">Home</a>
+      <a href="/intake" class="primary">Start Intake</a>
+      <a href="/modules">Browse</a>
+      <a href="/docs">How it works</a>
+      <a href="http://www.creatorsclub.store" target="_blank" rel="noreferrer" style="color:var(--gold);font-weight:900;background:rgba(18,18,26,.35);border:1px solid rgba(201,162,39,.25);">visit The Creators Club</a>
+    </div>
 
     <div class="card">
+      <div class="kicker">Module 1 of 8</div>
       <h1>Start Intake</h1>
-      <p>Describe the result you want. We turn it into a working workflow. If you are not technical, keep it simple and outcome-focused.</p>
+      <p>
+        Describe the outcome you want. We turn it into a working workflow.
+        If you are not technical, keep it simple and outcome-focused.
+      </p>
 
       <form id="f">
         <div class="grid">
@@ -79,7 +87,7 @@
 
         <label>What are you trying to achieve?</label>
         <select name="intent" required>
-          <option value="">Pick one</option>
+          <option value="" selected disabled>Pick one</option>
           <option>Automate a repetitive task</option>
           <option>Build a content system</option>
           <option>Track competitors</option>
@@ -91,13 +99,34 @@
         <textarea name="message" required placeholder="Tell us: (1) what you want to happen, (2) where it should happen, (3) how often."></textarea>
         <div class="help">Tip: If you can, include the tools you use (Instagram, YouTube, Google Sheets, Gmail, n8n, Zapier).</div>
 
-        <div class="btnRow">
-          <button type="submit">Submit intake</button>
-          <a class="ghost" href="/modules">Not sure? Browse</a>
-          <span class="help">Endpoint: <code>POST /intake-public</code></span>
+        <div class="row2">
+          <div>
+            <label>Where should this run?</label>
+            <select name="channel">
+              <option value="site" selected>Website (AutomationCentral.online)</option>
+              <option value="email">Email</option>
+              <option value="sheets">Google Sheets</option>
+              <option value="n8n">n8n (internal)</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label>Priority</label>
+            <select name="priority">
+              <option value="normal" selected>Normal</option>
+              <option value="high">High</option>
+              <option value="urgent">Urgent</option>
+            </select>
+          </div>
         </div>
 
-        <div id="ok" class="ok">Submitted. Your request was logged successfully.</div>
+        <div class="btnRow">
+          <button id="submitBtn" type="submit">Submit intake</button>
+          <a class="ghost" href="/modules">Not sure? Browse</a>
+          <span class="help">Endpoint: <code>POST https://api.automationcentral.online/intake-public</code></span>
+        </div>
+
+        <div id="ok" class="ok">Submitted. Your request was logged successfully. Redirecting…</div>
         <div id="err" class="err">Submission failed. Try again after a refresh.</div>
       </form>
 
@@ -114,20 +143,34 @@
     const form = document.getElementById("f");
     const ok = document.getElementById("ok");
     const err = document.getElementById("err");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function showErr(msg){
+      err.textContent = msg || "Submission failed. Try again after a refresh.";
+      err.style.display = "block";
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       ok.style.display = "none";
       err.style.display = "none";
 
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Submitting…";
+
       const fd = new FormData(form);
       const payload = {
         source: "site",
-        name: fd.get("name"),
-        email: fd.get("email"),
-        intent: fd.get("intent"),
-        message: fd.get("message"),
-        meta: { page: "/intake" }
+        name: String(fd.get("name") || ""),
+        email: String(fd.get("email") || ""),
+        intent: String(fd.get("intent") || ""),
+        message: String(fd.get("message") || ""),
+        meta: {
+          page: "/intake",
+          channel: String(fd.get("channel") || "site"),
+          priority: String(fd.get("priority") || "normal"),
+          ua: navigator.userAgent
+        }
       };
 
       try {
@@ -137,17 +180,26 @@
           body: JSON.stringify(payload)
         });
 
-        const j = await r.json();
-        if (!r.ok) throw new Error(JSON.stringify(j));
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || !j.ok) {
+          throw new Error(j && j.error ? j.error : ("HTTP " + r.status));
+        }
 
-        window.location.href = "/thanks";
+        ok.style.display = "block";
+        form.reset();
+
+        setTimeout(() => {
+          window.location.href = "/thanks";
+        }, 450);
+
       } catch (e2) {
         console.error(e2);
-        err.style.display = "block";
+        showErr("Submission failed: " + (e2 && e2.message ? e2.message : "Unknown error"));
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Submit intake";
       }
     });
   </script>
 </body>
 </html>
-
-
